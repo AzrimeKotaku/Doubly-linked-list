@@ -83,34 +83,21 @@ void printDLL() {
 		cur = cur->next;
 		count++;
 	}
-}
-void printDBL() {
-	cur = tail;
-	int count = 1;
-	while(cur != NULL) {
-		std::cout << "value" << count << " : " << cur->value << std::endl;
-		cur = cur->prev;
-		count++;
-	}
+	std::cout << "\n=====================================\n\n";
 }
 int main() {
+	
 	createDLL(1);
 	for(int i = 2; i < 6; i++) {
 		addLast(i);
 	}
 	printDLL();
 	
-	std::cout << "=====================================\n";
-	
 	addMid(555, 3);
 	printDLL();
-	
-	std::cout << "=====================================\n";
 	
 	removeMid(3);
 	printDLL();
 	
-	std::cout << "=====================================\n";
-
 	return 0;
 }
