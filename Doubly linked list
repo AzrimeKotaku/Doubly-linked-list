@@ -1,1 +1,116 @@
+#include <iostream>
 
+struct Angka {
+	int value;
+	Angka *next;
+	Angka *prev;
+}*head, *tail, *cur, *del, *newNode, *temp;
+
+//	Buat
+void createDLL(int val) {
+	head = new Angka();
+	head->value = val;
+	head->next = nullptr;
+	head->prev = nullptr;
+	tail = head;
+}
+//	Tambah
+void addFirst(int val) {
+	newNode = new Angka();
+	newNode->value = val;
+	newNode->prev = nullptr;
+	newNode->next = head;
+	head = newNode;
+}
+void addMid(int val, int index) {
+	newNode = new Angka();
+	newNode->value = val;
+	cur = head;
+	int count = 1;
+	while(count < index) {
+		cur = cur->next;
+		count++;
+	}
+	newNode->prev = cur;
+	newNode->next = cur->next;
+	cur->next = newNode;
+	
+	cur = newNode->next;
+	cur->prev = newNode;
+}
+
+void addLast(int val) {
+	newNode = new Angka();
+	newNode->value = val;
+	newNode->prev = tail;
+	newNode->next = nullptr;
+	tail->next = newNode;
+	tail = newNode;
+}
+//	Hapus
+void removeFirst() {
+	del = head;
+	head = del->next;
+	head->prev = nullptr;
+	delete del;
+}
+void removeMid(int index) {
+	cur = head;
+	int count = 1;
+	while(count < index) {
+		cur = cur->next;
+		count++;
+	}
+	del = cur;
+	cur = cur->prev;
+	temp = del->next;
+	temp->prev = cur;
+	cur->next = temp;
+	
+	delete del;
+}
+void removeLast() {
+	del = tail;
+	tail = tail->prev;
+	tail->next = nullptr;
+	delete del;
+}
+void printDLL() {
+	cur = head;
+	int count = 1;
+	while(cur != NULL) {
+		std::cout << "value" << count << " : " << cur->value << std::endl;
+		cur = cur->next;
+		count++;
+	}
+}
+void printDBL() {
+	cur = tail;
+	int count = 1;
+	while(cur != NULL) {
+		std::cout << "value" << count << " : " << cur->value << std::endl;
+		cur = cur->prev;
+		count++;
+	}
+}
+int main() {
+	createDLL(1);
+	for(int i = 2; i < 6; i++) {
+		addLast(i);
+	}
+	printDLL();
+	
+	std::cout << "=====================================\n";
+	
+	addMid(555, 3);
+	printDLL();
+	
+	std::cout << "=====================================\n";
+	
+	removeMid(3);
+	printDLL();
+	
+	std::cout << "=====================================\n";
+
+	return 0;
+}
