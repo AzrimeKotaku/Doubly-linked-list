@@ -1,4 +1,6 @@
 #include <iostream>
+using namespace std;
+
 
 struct Angka {
 	int value;
@@ -10,15 +12,15 @@ struct Angka {
 void createDLL(int val) {
 	head = new Angka();
 	head->value = val;
-	head->next = nullptr;
-	head->prev = nullptr;
+	head->next = NULL;
+	head->prev = NULL;
 	tail = head;
 }
 //	Tambah
 void addFirst(int val) {
 	newNode = new Angka();
 	newNode->value = val;
-	newNode->prev = nullptr;
+	newNode->prev = NULL;
 	newNode->next = head;
 	head = newNode;
 }
@@ -43,7 +45,7 @@ void addLast(int val) {
 	newNode = new Angka();
 	newNode->value = val;
 	newNode->prev = tail;
-	newNode->next = nullptr;
+	newNode->next = NULL;
 	tail->next = newNode;
 	tail = newNode;
 }
@@ -51,7 +53,7 @@ void addLast(int val) {
 void removeFirst() {
 	del = head;
 	head = del->next;
-	head->prev = nullptr;
+	head->prev = NULL;
 	delete del;
 }
 void removeMid(int index) {
@@ -72,7 +74,7 @@ void removeMid(int index) {
 void removeLast() {
 	del = tail;
 	tail = tail->prev;
-	tail->next = nullptr;
+	tail->next = NULL;
 	delete del;
 }
 void printDLL() {
